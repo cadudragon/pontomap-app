@@ -1,0 +1,25 @@
+<ion-menu [content]="nav" id="menu1">
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+    <ion-list  class="menuColor">
+      <button ion-item (click)="onLoad(homePage)" class="menuColor">
+        <ion-icon name="home" class="larger" color="cinza"></ion-icon>
+        <span style="color:#ccc;"> Home</span>
+      </button>
+      <button ion-item (click)="onLoad(ordensServico)" class="menuColor">
+        <ion-icon name="paper" class="larger" color="cinza"></ion-icon>
+        <span style="color:#ccc;">Ordens de Servico</span>
+      </button>
+      <button ion-item  (click)="logOut()" class="menuColor">
+        <ion-icon name="log-out" class="larger" color="cinza"></ion-icon>
+        <span style="color:#ccc;">Sair</span>
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="loginPage" #nav></ion-nav>

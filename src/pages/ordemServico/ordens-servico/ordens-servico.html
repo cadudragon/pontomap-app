@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Suas Ordens Abertas</ion-title>
+    <ion-buttons left menuToggle>
+      <button ion-button>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <div class="titleicon">
+      <img src="assets/img/sghd2.png" width="40px" />&nbsp;
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card text-wrap>
+
+    <ion-card-header>
+      Recarregue as ordens
+      a partir <br>do menu lateral
+      para atualizações.
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-icon name='checkbox' item-start style="color: #55acee"></ion-icon>
+        Quantidade de Ordens<br> Abertas para você:
+        <ion-badge item-end>{{qtdOrdens}}</ion-badge>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-list>
+    <button
+      ion-item
+      *ngFor="let ordem of ordensServico"
+      [navPush]="ordemPage"
+      [navParams]="ordem"
+      color="cloud">
+      <ion-icon name="paper" style="color: #e74c3c" item-left></ion-icon>
+      <h2 ><strong>OS: </strong>{{ordem.ID_ORDEM_SERVICO}} <strong>Local: </strong> {{ordem.LOCAL}}</h2>
+      <h3><strong>Equipamento: </strong> {{ordem.CODENOME}}</h3>
+      <p><strong>Abertura: </strong> {{ordem.DATA_CADASTRO}}</p>
+    </button>
+  </ion-list>
+
+
+
+<!--
+  <ion-list >
+    <ion-item text-wrap *ngFor="let ordem of ordensServico" (click)="editarOrdem(ordem)" >
+      <h2 ><strong>OS: </strong>{{ordem.ID_ORDEM_SERVICO}} <strong>Local: </strong> {{ordem.LOCAL}}</h2>
+      <h3><strong>Equipamento: </strong> {{ordem.CODENOME}}</h3>
+      <p><strong>Abertura: </strong> {{ordem.DATA_CADASTRO}}</p>
+    </ion-item>
+  </ion-list>
+
+   -->
+</ion-content>

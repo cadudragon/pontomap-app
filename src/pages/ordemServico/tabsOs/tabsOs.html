@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left menuToggle>
+      <button ion-button>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-tabs>
+  <ion-tab [root]="ordensPage" tabIcon="document" tabTitle="Ordens Abertas"></ion-tab>
+  <ion-tab [root]="ordensFechadasRecentesPage" tabIcon="paper" tabTitle="Ordens Fechadas"></ion-tab>
+</ion-tabs>
+</ion-content>

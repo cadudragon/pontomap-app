@@ -1,0 +1,134 @@
+<!--
+  Generated template for the OrdensServico page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton="true">
+
+    <button ion-button color="light" clear icon-only (click)="voltar()">
+      <ion-icon name='arrow-back' is-active="false"></ion-icon>
+     Voltar
+    </button>
+
+    <ion-title>OS:{{ordemServico.ID_ORDEM_SERVICO}} - TKT:{{ordemServico.ID_CHAMADO}}</ion-title>
+
+    <div class="titleicon">
+      <img src="assets/img/sghd2.png" width="40px" />&nbsp;
+    </div>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Local:</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>{{ordemServico.LOCAL}} </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Dispositivo</ion-label>
+        </ion-col>
+        <ion-col>
+          <button
+            ion-button
+            item-end
+            outline
+            icon-left
+            color="darkRedSphera"
+            [navPush]="ordensServicoRelPage"
+            [navParams]="ordemServico.ID_DISPOSITIVO">
+            <ion-icon name='clipboard'></ion-icon>
+            {{ordemServico.CODENOME}}
+          </button>
+
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Abertura:</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>{{ordemServico.DATA_CADASTRO}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Data de entrada:</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>{{ordemServico.DT_INICIO}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Solicitante:</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>{{ordemServico.GPORT}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+            <ion-label>Defeito / Diagnóstico:</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>{{ordemServico.DIAGNOSTICO}} / {{ordemServico.DEFEITO_APRESENTADO}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button
+            ion-button
+            icon-right
+            block
+            color="dark"
+            [disabled] =ordemStartada
+            (click)="iniciarAtendimento()">
+            Iniciar Atendimento
+            <ion-icon name="clock"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+            <ion-textarea
+              class="txtArea"
+              name="descAtendimento"
+              placeholder="Descreva o Atendimento"
+              [(ngModel)]="ordemServico.DESCRICAO_ATENDIMENTO"
+              required></ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-textarea
+            class="txtArea"
+            name="material"
+            placeholder="Materiais Utilizados:"
+            [(ngModel)]="ordemServico.MATERIAL_UTILIZADO"
+            required></ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button
+            ion-button
+            full
+            color="dark"
+            [disabled] = solicitacaoFechamentoRealizada
+            (click)="salvarAtendimento()">
+            Salvar Atendimento
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

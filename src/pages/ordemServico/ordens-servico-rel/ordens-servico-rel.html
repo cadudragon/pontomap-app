@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar hideBackButton="true">
+    <button ion-button color="light" clear icon-only (click)="voltar()">
+      <ion-icon name='arrow-back' is-active="false"></ion-icon>
+      Voltar
+    </button>
+    <ion-title>Relatório de Ordens</ion-title>
+    <ion-buttons left menuToggle>
+      <button ion-button>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <div class="titleicon">
+      <img src="assets/img/sghd2.png" width="40px" />&nbsp;
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button
+      ion-item
+      *ngFor="let ordem of ordensRel"
+      (click)="onViewOsRel(ordem)"
+      color="cloud">
+      <ion-icon name="paper" style="color: #e74c3c" item-left></ion-icon>
+      <h2 ><strong>OS: </strong>{{ordem.ID_ORDEM_SERVICO}}</h2>
+      <h3 text-wrap><strong>Diagnóstico: </strong> {{ordem.DIAGNOSTICO}}</h3>
+      <h3><strong>Início: </strong> {{ordem.DATA_CADASTRO}}</h3>
+      <p><strong>Fim:  {{ordem.DT_FIM}}</strong> </p>
+    </button>
+  </ion-list>
+</ion-content>

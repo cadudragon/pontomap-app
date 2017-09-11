@@ -1,0 +1,81 @@
+
+
+<ion-content padding>
+
+  <ion-grid>
+
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Dispositivo:</strong>
+      </ion-col>
+      <ion-col>
+        <label>{{ordemServico.CODENOME}}</label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Abertura:</strong>
+      </ion-col>
+      <ion-col>
+        <ion-label>{{ordemServico.DATA_CADASTRO}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Data de entrada:</strong>
+      </ion-col>
+      <ion-col>
+        <ion-label>{{ordemServico.DT_INICIO}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Fechamento:</strong>
+      </ion-col>
+      <ion-col>
+        <ion-label>{{ordemServico.DT_FIM}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Solicitante:</strong>
+      </ion-col>
+      <ion-col>
+        <ion-label>{{ordemServico.GPORT}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Defeito / Diagnóstico:</strong><br>
+        <ion-label text-wrap>{{ordemServico.DEFEITO_APRESENTADO}} /{{ordemServico.DIAGNOSTICO}} </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Descrição do Atendimento:</strong><br>
+        <ion-label text-wrap>{{ordemServico.DESCRICAO_ATENDIMENTO}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="linha">
+      <ion-col>
+        <strong>Material Utilizado:</strong><br>
+        <ion-label>{{ordemServico.MATERIAL_UTLIZADO}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div text-center>
+          <button ion-button color="dark" navPop>Fechar</button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+<!--
+
+ -->
+
+
+
