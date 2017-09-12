@@ -18,6 +18,9 @@ import { LoginService } from '../providers/login-service';
 import  {ordemServicoService} from "../services/ordem-servico-service";
 import {OrdemServicoProvider} from "../providers/ordem-servico-provider";
 import {OrdemServicoRelPage} from "../pages/ordemServico/ordem-servico-rel/ordem-servico-rel";
+import {PontoProvider} from "../providers/ponto-provider";
+import { Geolocation } from '@ionic-native/geolocation';
+import {RegistroPonto} from "../pages/registro-ponto/registro-ponto";
 
 
 
@@ -30,7 +33,10 @@ import {OrdemServicoRelPage} from "../pages/ordemServico/ordem-servico-rel/ordem
     OrdemServicoPage,
     OrdensServicoPage,
     OrdensServicoRelPage,
-    OrdemServicoRelPage
+    OrdemServicoRelPage,
+
+    RegistroPonto
+
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,9 @@ import {OrdemServicoRelPage} from "../pages/ordemServico/ordem-servico-rel/ordem
     OrdemServicoPage,
     OrdensServicoPage,
     OrdensServicoRelPage,
-    OrdemServicoRelPage
+    OrdemServicoRelPage,
+
+    RegistroPonto
   ],
   providers: [
     StatusBar,
@@ -55,7 +63,9 @@ import {OrdemServicoRelPage} from "../pages/ordemServico/ordem-servico-rel/ordem
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginService,
     ordemServicoService,
-    OrdemServicoProvider
+    OrdemServicoProvider,
+    Geolocation,
+    PontoProvider
   ]
 })
 export class AppModule {

@@ -107,6 +107,8 @@ export class LoginService {
           this.usuarioLogado =  new Login(responseUser.id_login,responseUser.username,responseUser.access_token );
           loader.dismiss();
           this.app.getActiveNav().setRoot(this.homePage);
+          this.app.getRootNav().setRoot(this.homePage);
+          console.log('entrei')
       },
         (err) =>{
           const alert =  this.alertCtrl.create({

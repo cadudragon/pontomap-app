@@ -10,6 +10,8 @@ import {HomePage} from "../pages/home/home";
 import {LoginService} from "../providers/login-service";
 import {OrdensServicoPage} from "../pages/ordemServico/ordens-servico/ordens-servico";
 
+import {RegistroPonto} from "../pages/registro-ponto/registro-ponto";
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -22,6 +24,8 @@ export class MyApp {
   osPage = OrdemServicoPage;
   homePage = HomePage;
   rootPage: any = this.homePage;
+
+  registroPontoPage = RegistroPonto;
 
 
   @ViewChild('nav') nav: NavController
