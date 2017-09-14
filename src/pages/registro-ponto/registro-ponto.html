@@ -16,5 +16,25 @@
 
 
 <ion-content>
-  <button class="btnDefault" ion-button  block  (click)="registrarPonto();" >Registrar Ponto</button>
+  <ion-card text-wrap>
+    <ion-item>
+      <button class="btnDefault" ion-button  block  (click)="registrarPonto();">Registrar Ponto</button>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='checkbox' item-start style="color: #55acee"></ion-icon>
+     Registros realizados hoje:
+    </ion-item>
+  </ion-card>
+  <ion-list>
+    <button
+      ion-item
+      *ngFor="let ponto of registrosDePonto"
+      color="cloud">
+      <ion-icon name="paper" style="color: #e74c3c" item-left></ion-icon>
+      <h2 text-wrap>
+        <strong>Horário: </strong>{{ponto.DtRegistroString}}
+        <strong>Geolocallização: </strong> {{ponto.CdLat}}, {{ponto.CdLng}}
+      </h2>
+    </button>
+  </ion-list>
 </ion-content>

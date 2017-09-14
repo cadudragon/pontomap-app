@@ -1,4 +1,4 @@
-import { Injectable, forwardRef, Inject } from '@angular/core';
+import { Injectable, forwardRef, Inject   } from '@angular/core';
 import {Http, RequestOptions} from '@angular/http';
 import {Headers} from '@angular/http';
 import 'rxjs/add/operator/map';;
@@ -39,21 +39,17 @@ export class PontoProvider {
      return this.http.get(url+'/api/ponto/GetPontoList', { headers: headers }).map(res => res.json());
   }
 
-
-
-  iniciarAtendimento(url, id_ordem_servico, celNumber){
+  registrarPonto(url, lat, lng){
 
     var headers = new Headers();
 
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     headers.append('Authorization', 'bearer ' + this.usuarioLogado.token );
 
-    var credentials = "id_ordem_servico=" + id_ordem_servico
-      + "&ddd=" + celNumber.substring(0,2) +""
-      + "&numero=" + celNumber.substring(2) + ""
+    var credentials = "lat=" + lat
+      + "&lng=" + lng
 
-
-    return this.http.post(url+'/api/os/iniciarOrdemServico', credentials, { headers: headers }).map(res => res.json());
+    return this.http.post(url+'/api/ponto/RegistrarPonto', credentials, { headers: headers }).map(res => res.json());
   }
 
 
@@ -84,7 +80,7 @@ export class PontoProvider {
     headers.append('Authorization', 'bearer ' + this.usuarioLogado.token );
 
     var credentials = "?id_dispositivo=" + id_dispositivo
-    return this.http.get(url+'/api/os/getOrdensServicoRel' + credentials, { headers: headers }).map(res => res.json());
+    return this.http.get(url+'/api/os/getOrdensServicoRel' + credentials, { headers: headers }).map(res => res.json().toPromise());
 
   }
 }

@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject} from '@angular/core';
+import {Component, forwardRef, Inject, NgZone} from '@angular/core';
 import { IonicPage, NavController, NavParams,Platform, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {PontoProvider} from "../../providers/ponto-provider";
@@ -25,6 +25,7 @@ export class RegistroPonto {
   loginService  : LoginService;
   registrosDePonto: any;
 
+
   constructor(public nav: NavController,
               public navParams: NavParams,
               public platform: Platform,
@@ -32,7 +33,8 @@ export class RegistroPonto {
               private storage: Storage,
               @Inject(forwardRef(() => LoginService)) loginService: LoginService,
               private pontoProvider : PontoProvider,
-              private geolocation: Geolocation) {
+              private geolocation: Geolocation,
+              private zone: NgZone) {
 
   }
 
@@ -44,8 +46,8 @@ export class RegistroPonto {
     });
   }
 
-  ionViewDidLoad(){
-
+  ionViewDidEnter(){
+    this.getRegistosDeponto();
   }
 
   voltar(){
@@ -62,7 +64,13 @@ export class RegistroPonto {
     this.storage.get('url').then((val) => {
       this.pontoProvider.getRegistrosDePonto(val).subscribe(
         result => {
-          this.registrosDePonto = JSON.parse(result);
+
+
+          this.zone.run(() => {
+            this.registrosDePonto = JSON.parse(result);
+            console.log('Updated List: ');
+          });
+
           console.log(this.registrosDePonto);
           loader.dismiss();
         },
@@ -83,12 +91,39 @@ export class RegistroPonto {
   }
 
   registrarPonto(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-      alert('lat: ' + resp.coords.latitude + " lng: "+ resp.coords.longitude);
-    }).catch((error) => {
-      alert('Error getting location' +  error);
+
+    let loader = this.loading.create({
+      content: 'Requsitando posicionamento do aparelho...',
     });
 
-  }
+    loader.present();
+    this.geolocation.getCurrentPosition().then((resp) => {
 
+      var lat = resp.coords.latitude.toString().replace(".",",");
+      var lng = resp.coords.longitude.toString().replace(".",",");
+
+      this.storage.get('url').then((val) => {
+        this.pontoProvider.registrarPonto(val, lat, lng).subscribe(
+          result => {
+            loader.dismiss();
+            this.getRegistosDeponto();
+          },
+          err =>{
+            loader.dismiss();
+            if(err.status == 401){
+              this.loginService.deslogarUsuario('Sessão expirou, necessário realizar novo login.');
+            }else{
+              this.loginService.redirecinoarParaHome('Erro de conexão','Verifique sua a conexão de internet/servidor e tente acessar novamente');
+            }
+          } ,
+          () => {
+
+          }
+        );
+      });
+
+    }).catch((error) => {
+      alert('Erro entre em contato com suporte: ' +  error);
+    });
+  }
 }
