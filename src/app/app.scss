@@ -16,7 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 ion-header{
-  background-color: #e74c3c;
+  background-color: #3A539B;
 }
 
 ion-list{
@@ -24,12 +24,18 @@ ion-list{
 }
 
 .btnDefault{
-  background-color: #22313F;
+  background-color: #26A65B;
   border-color: white;
 }
 
+
+
+.btnDefault:hover{
+  background-color: #69a74e !important;
+}
+
 .menuColor{
-  background-color: #23262a;
+  background-color: #3A539B !important;
 }
 
 .larger {

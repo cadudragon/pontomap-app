@@ -93,7 +93,7 @@ export class RegistroPonto {
   registrarPonto(){
 
     let loader = this.loading.create({
-      content: 'Requsitando posicionamento do aparelho...',
+      content: 'Requisitando posicionamento do aparelho...',
     });
 
     loader.present();
