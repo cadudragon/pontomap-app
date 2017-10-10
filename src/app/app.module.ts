@@ -20,7 +20,10 @@ import {OrdemServicoProvider} from "../providers/ordem-servico-provider";
 import {OrdemServicoRelPage} from "../pages/ordemServico/ordem-servico-rel/ordem-servico-rel";
 import {PontoProvider} from "../providers/ponto-provider";
 import { Geolocation } from '@ionic-native/geolocation';
+
+
 import {RegistroPonto} from "../pages/registro-ponto/registro-ponto";
+
 
 
 

@@ -44,9 +44,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.loginService = loginService;
       statusBar.styleDefault();
-      splashScreen.hide();
 
-
+      setTimeout(() => {
+        splashScreen.hide();
+      }, 25);
 
     });
 
@@ -58,6 +59,8 @@ export class MyApp {
     //storage.set('url', 'http://189.50.187.131:8078');
 
   }
+
+
 
   onLoad(page: any) {
     this.nav.setRoot(page);

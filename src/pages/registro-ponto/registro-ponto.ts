@@ -24,6 +24,7 @@ export class RegistroPonto {
 
   loginService  : LoginService;
   registrosDePonto: any;
+  labelBtnBaterPonto: string;
 
 
   constructor(public nav: NavController,
@@ -35,7 +36,6 @@ export class RegistroPonto {
               private pontoProvider : PontoProvider,
               private geolocation: Geolocation,
               private zone: NgZone) {
-
   }
 
   ngOnInit(){
@@ -48,6 +48,7 @@ export class RegistroPonto {
 
   ionViewDidEnter(){
     this.getRegistosDeponto();
+    this.mudarLabelBtnRegistrarPonto();
   }
 
   voltar(){
@@ -68,7 +69,8 @@ export class RegistroPonto {
 
           this.zone.run(() => {
             this.registrosDePonto = JSON.parse(result);
-            console.log('Updated List: ');
+            this.mudarLabelBtnRegistrarPonto();
+
           });
 
           console.log(this.registrosDePonto);
@@ -125,5 +127,13 @@ export class RegistroPonto {
     }).catch((error) => {
       alert('Erro entre em contato com suporte: ' +  error);
     });
+  }
+
+  mudarLabelBtnRegistrarPonto(){
+    if(Array.isArray(this.registrosDePonto)){
+      this.labelBtnBaterPonto =  this.registrosDePonto.length % 2 == 0 ?  "Registrar Entrada" : "Registrar Saída";
+    }else{
+      this.labelBtnBaterPonto =  "Registrar Entrada";
+    }
   }
 }
