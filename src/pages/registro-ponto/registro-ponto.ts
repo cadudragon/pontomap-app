@@ -36,6 +36,7 @@ export class RegistroPonto {
               private pontoProvider : PontoProvider,
               private geolocation: Geolocation,
               private zone: NgZone) {
+    this.loginService =  loginService;
   }
 
   ngOnInit(){
@@ -99,7 +100,7 @@ export class RegistroPonto {
     });
 
     loader.present();
-    this.geolocation.getCurrentPosition().then((resp) => {
+    this.geolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: true, maximumAge: 0}).then((resp) => {
 
       var lat = resp.coords.latitude.toString().replace(".",",");
       var lng = resp.coords.longitude.toString().replace(".",",");
@@ -125,7 +126,8 @@ export class RegistroPonto {
       });
 
     }).catch((error) => {
-      alert('Erro entre em contato com suporte: ' +  error);
+      loader.dismiss();
+      this.loginService.redirecinoarParaHome('Erro de conexão','Verifique suas a conexões de internet/GPS e tente acessar novamente');
     });
   }
 
